@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">PotilasDB</string>
+
+    <string-array name="seed">
+        <item>Kimmo Mylläri</item>
+        <item>Arto Holappa</item>
+        <item>Katja Möttölä</item>
+        <item>Eetvartti Kankkunen</item>
+        <item>Tarja Myllys</item>
+        <item>Ismo Leikola</item>
+        <item>Kimmo Kivelä</item>
+        <item>Antti Tuisku</item>
+        <item>Kerttu Tanskanen</item>
+        <item>Päivi Räsänen</item>
+        <item>Herman Saarinen</item>
+        <item>Item 3</item>
+        <item>Item 4</item>
+        <item>Item 5</item>
+        <item>Item 6</item>
+        <item>Item 7</item>
+        <item>Item 8</item>
+        <item>Item 9</item>
+    </string-array>
+</resources>
