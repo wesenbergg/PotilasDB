@@ -18,6 +18,10 @@ public class luoPotilas extends AppCompatActivity {
         luoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //luo uusi potilasolio tässä
+                PotilasLista.getInstance().lisaaPotilas( new PotilasOlio("Esimerkki", 2018));
+
+
                 Intent intentLuo = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intentLuo);
             }
