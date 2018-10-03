@@ -15,8 +15,10 @@ public class potilasSingle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_potilas_single);
 
-        Intent intent1 = getIntent();
-        int index = intent1.getIntExtra("ITEM_KEY", -1);
+
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
+        final int index = b.getInt("potilasIndex", -1);
 
         if (index > -1) { setViewById(index); }
 
@@ -24,19 +26,20 @@ public class potilasSingle extends AppCompatActivity {
         fabMuokkaa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), muokkaaPotilas.class);
-                startActivity(intent);
+                Intent muokkaaActivity = new Intent(getApplicationContext(), muokkaaPotilas.class);
+                muokkaaActivity.putExtra("potilasIndex", index);
+                startActivity(muokkaaActivity);
             }
         });
     }
 
     private void setViewById(int i){
-        Resources res = getResources();
-
-        String[] nimi = res.getStringArray(R.array.seed);
-
+        String nimet = PotilasLista.getInstance().haePotilasOlio(i).toString();
         TextView nimiTV = (TextView) findViewById(R.id.nimiTV);
+        nimiTV.setText(nimet);
 
-        nimiTV.setText(nimi[i]);
+        String diagnoosi = PotilasLista.getInstance().haePotilasOlio(i).getDiagnoosi();
+        TextView diagnoosiTV = (TextView) findViewById(R.id.diagnoosiTV);
+        diagnoosiTV.setText(diagnoosi);
     }
 }
