@@ -5,11 +5,20 @@ import android.content.res.Resources;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class potilasSingle extends AppCompatActivity {
+
+    private CollectionReference colRef = FirebaseFirestore.getInstance().collection("potilaat");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +28,7 @@ public class potilasSingle extends AppCompatActivity {
         //Vastaanottaa intentin
         //Tallenna intent välittämät tiedot muuttujaan
         //Hae indeksi key:llä. Jos ei löydy value, niin palauta -1
-        Intent intent = getIntent();
-        Bundle b = intent.getExtras();
-        final int index = b.getInt("Indeksi", -1);
+        final int index = getIndex();
 
         //Suorittaa setViewById, jos indeksi löytyy
         if (index > -1) { setViewById(index); }
@@ -49,5 +56,36 @@ public class potilasSingle extends AppCompatActivity {
 
         nimiTV.setText(nimet);
         diagnoosiTV.setText(diagnoosi);
+    }
+
+    //Lisää delete-menu oikeeseen yläkulmaan
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.delete_menu, menu);
+        return true;
+    }
+
+    //Delete painikkeelle metodi
+    public void deleteItem(MenuItem item) {
+        //Etsii potilaan indexillä
+        //Hakee Id tunnuksen
+        //Poistaa firestore db:stä
+        PotilasOlio potilas = PotilasLista.getInstance().haePotilasOlio(getIndex());
+        String poistettavanId = potilas.getId();
+
+        colRef.document(poistettavanId).delete();
+
+        //siirry mainactivityyn
+        Intent intentFrontPage = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intentFrontPage);
+    }
+
+    private int getIndex(){
+        Intent intentti = getIntent();
+        Bundle b = intentti.getExtras();
+        int index = b.getInt("Indeksi", -1);
+
+        return index;
     }
 }
