@@ -19,6 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class luoPotilas extends AppCompatActivity {
+    //Referenssi firebase-collectioniin
     private CollectionReference colRef = FirebaseFirestore.getInstance().collection("potilaat");
 
     @Override
@@ -26,27 +27,26 @@ public class luoPotilas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_luo_potilas);
 
-
-
-
+        //Suorita tämä koodi kun Luo-button on painettu
         Button luoBtn = (Button) findViewById(R.id.luoBtn);
         luoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //Etsi edit textit, lisää edit text data muuttujiin
                 EditText etuNim = (EditText) findViewById(R.id.potilasEtunimi);
-                String etuNimi = etuNim.getText().toString();
                 EditText sukuNim = (EditText) findViewById(R.id.potilasSukunimi);
-                String sukuNimi = sukuNim.getText().toString();
                 EditText diagnoos = (EditText) findViewById(R.id.potilasDiagnoosi);
+
+                String etuNimi = etuNim.getText().toString();
+                String sukuNimi = sukuNim.getText().toString();
                 String diagnoosi = diagnoos.getText().toString();
 
-                //PotilasLista.getInstance().lisaaPotilas(new PotilasOlio(etuNimi, sukuNimi, diagnoosi));
+                //Luo potilas-olio, lisää olio firebaseen
+                PotilasOlio potilas = new PotilasOlio(etuNimi,sukuNimi,diagnoosi);
+                colRef.add(potilas);
 
-                PotilasOlio asd = new PotilasOlio(etuNimi,sukuNimi,diagnoosi);
-                final String id = asd.getId();
-                colRef.add(asd);
-
-
+                //Siirry MainActivityyn
                 Intent intentLuo = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intentLuo);
             }

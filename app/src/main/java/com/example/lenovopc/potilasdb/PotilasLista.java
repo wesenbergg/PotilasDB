@@ -3,9 +3,15 @@ package com.example.lenovopc.potilasdb;
 import java.util.ArrayList;
 
 public class PotilasLista {
+
     private ArrayList<PotilasOlio> lista = new ArrayList<>();
     private static final PotilasLista ourInstance = new PotilasLista();
 
+    private PotilasLista() {
+        //Tyhjä konstruktori metodi
+    }
+
+    //Getterit alkavat
     public static PotilasLista getInstance() {
         return ourInstance;
     }
@@ -14,20 +20,18 @@ public class PotilasLista {
         return lista;
     }
 
+    public PotilasOlio haePotilasOlio(int i) { return lista.get(i); }
+    //Getterit loppuvat
+
+    //Setterit alkavat
     public void lisaaPotilas(PotilasOlio potilas) {
         lista.add(potilas);
     }
+    //Setterit loppuvat
 
-    private PotilasLista() {
-    }
-
-    public PotilasOlio haePotilasOlio(int i) {
-        return lista.get(i);
-    }
-
+    //Metodi, joka tyhjentää listan
     public void clear() {
         lista.clear();
     }
-
 
 }

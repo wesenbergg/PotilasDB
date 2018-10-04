@@ -20,16 +20,16 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
     private static final String TAG = "MainAcvtivity";
     private CollectionReference colRef = FirebaseFirestore.getInstance().collection("potilaat");
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        //Listener Lisää-painikkeelle
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,11 +44,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        colRef
-                .get()
+        //Luo lista näkymän
+        colRef.get()
                 .addOnSuccessListener(this, new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                        //Tyhjentää listan
+                        //Lisää listaan kaikki tietokannan documentit
+                        //Muuttaa documentit Java-olioiksi ja lisää listalle
                         PotilasLista.getInstance().getPotilaat().clear();
                         for(QueryDocumentSnapshot documentSnapShot : queryDocumentSnapshots) {
                             PotilasOlio potilas = documentSnapShot.toObject(PotilasOlio.class);
@@ -62,14 +66,16 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+        //Täyttää ListView listan olioilla
         ListView potilasLista = (ListView) findViewById(R.id.potilaslista);
+        potilasLista.setAdapter(new ArrayAdapter<PotilasOlio>(MainActivity.this,
+                R.layout.listanjasen,
+                PotilasLista.getInstance().getPotilaat()));
 
-        potilasLista.setAdapter(new ArrayAdapter<PotilasOlio>(MainActivity.this, R.layout.listanjasen, PotilasLista.getInstance().getPotilaat()));
-
+        //Näkymä yksittäisen olion käyttöliittymään
         potilasLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-
                 Intent newActivity = new Intent(MainActivity.this, potilasSingle.class);
                 newActivity.putExtra("Indeksi", i);
                 startActivity(newActivity);

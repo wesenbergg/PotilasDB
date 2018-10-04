@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "606581136695",
+    "firebase_url": "https://potilasdb.firebaseio.com",
+    "project_id": "potilasdb",
+    "storage_bucket": "potilasdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606581136695:android:ceb4d6dfb95f0e4b",
+        "android_client_info": {
+          "package_name": "com.example.lenovopc.potilasdb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "606581136695-qbviitmttoou693a2ptdf98jjudqo8qj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lenovopc.potilasdb",
+            "certificate_hash": "a99db624390fb55366811651081d395c898e9315"
+          }
+        },
+        {
+          "client_id": "606581136695-i5h0jo660l352djvtgd9r9c0ujf3e4c4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdW0wRhNMBjdzEiHEDNmx1EZQn6MaoNck"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "606581136695-i5h0jo660l352djvtgd9r9c0ujf3e4c4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -16,13 +16,17 @@ public class potilasSingle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_potilas_single);
 
-
+        //Vastaanottaa intentin
+        //Tallenna intent välittämät tiedot muuttujaan
+        //Hae indeksi key:llä. Jos ei löydy value, niin palauta -1
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
         final int index = b.getInt("Indeksi", -1);
 
+        //Suorittaa setViewById, jos indeksi löytyy
         if (index > -1) { setViewById(index); }
 
+        //Muokkaa painikkeelle Listener
         FloatingActionButton fabMuokkaa = findViewById(R.id.fabMuokkaa);
         fabMuokkaa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,13 +38,16 @@ public class potilasSingle extends AppCompatActivity {
         });
     }
 
+    //Metodia kutsutaan jos löytyy indeksi
+    //Täyttää aktiviteetin potilas-olion tiedoilla
     private void setViewById(int i){
         String nimet = PotilasLista.getInstance().haePotilasOlio(i).toString();
-        TextView nimiTV = (TextView) findViewById(R.id.nimiTV);
-        nimiTV.setText(nimet);
-
         String diagnoosi = PotilasLista.getInstance().haePotilasOlio(i).getDiagnoosi();
+
+        TextView nimiTV = (TextView) findViewById(R.id.nimiTV);
         TextView diagnoosiTV = (TextView) findViewById(R.id.diagnoosiTV);
+
+        nimiTV.setText(nimet);
         diagnoosiTV.setText(diagnoosi);
     }
 }

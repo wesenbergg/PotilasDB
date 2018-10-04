@@ -8,18 +8,18 @@ public class PotilasOlio {
     private String sukuNimi;
     private String Diagnoosi;
 
-    public PotilasOlio(){}
+    public PotilasOlio(){
+        //Tyhjä konstruktori firebase tsydeemille
+    }
+
+    //Konstruktori
     public PotilasOlio(String etuNimi,String sukuNimi, String diagnoosi) {
         this.etuNimi = etuNimi;
         this.sukuNimi = sukuNimi;
         this.Diagnoosi = diagnoosi;
     }
 
-    @Exclude
-    public String getId() {
-        return id;
-    }
-
+    //Setterit alkavat
     public void setId(String id) {
         this.id = id;
     }
@@ -34,6 +34,13 @@ public class PotilasOlio {
 
     public void setDiagnoosi(String diagnoosi) {
         Diagnoosi = diagnoosi;
+    }
+    //Setterit loppuvat
+
+    //Getterit alkavat
+    @Exclude
+    public String getId() {
+        return id;
     }
 
     public String getEtuNimi() {
@@ -52,4 +59,5 @@ public class PotilasOlio {
     public String toString() {
         return this.sukuNimi + ", " + this.etuNimi;
     }
+    //Getterit loppuvat
 }
