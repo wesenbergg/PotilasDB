@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+
 public class potilasSingle extends AppCompatActivity {
 
     @Override
@@ -18,7 +19,7 @@ public class potilasSingle extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
-        final int index = b.getInt("potilasIndex", -1);
+        final int index = b.getInt("Indeksi", -1);
 
         if (index > -1) { setViewById(index); }
 

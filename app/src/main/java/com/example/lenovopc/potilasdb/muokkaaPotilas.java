@@ -7,7 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
 public class muokkaaPotilas extends AppCompatActivity {
+        private CollectionReference colRef = FirebaseFirestore.getInstance().collection("potilaat");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +38,23 @@ public class muokkaaPotilas extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                potilas.setEtuNimi(muokkaaNimi.getText().toString());
+               /* potilas.setEtuNimi(muokkaaNimi.getText().toString());
                 potilas.setSukuNimi(muokkaaSukunimi.getText().toString());
-                potilas.setDiagnoosi(muokkaaDiagnoosi.getText().toString());
+                potilas.setDiagnoosi(muokkaaDiagnoosi.getText().toString()); */
+                String potilasId = potilas.getId();
+
+                colRef.document(potilasId).update("etuNimi", muokkaaNimi.getText().toString());
+                colRef.document(potilasId).update("sukuNimi", muokkaaSukunimi.getText().toString());
+                colRef.document(potilasId).update("diagnoosi", muokkaaDiagnoosi.getText().toString());
 
 
                 Intent intentFrontPage = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intentFrontPage);
             }
         });
+    }
+
+    public void update(String potilasId) {
+
     }
 }
