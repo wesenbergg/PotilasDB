@@ -2,6 +2,8 @@ package com.example.lenovopc.potilasdb;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -41,20 +45,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
 
         //Luo lista näkymän
         colRef.get()
-                .addOnSuccessListener(this, new OnSuccessListener<QuerySnapshot>() {
+                .addOnCompleteListener(this, new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    public void onComplete(@NonNull Task<QuerySnapshot> task ) {
 
                         //Tyhjentää listan
                         //Lisää listaan kaikki tietokannan documentit
                         //Muuttaa documentit Java-olioiksi ja lisää listalle
                         PotilasLista.getInstance().getPotilaat().clear();
-                        for(QueryDocumentSnapshot documentSnapShot : queryDocumentSnapshots) {
+                        for(QueryDocumentSnapshot documentSnapShot : task.getResult()) {
                             PotilasOlio potilas = documentSnapShot.toObject(PotilasOlio.class);
                             potilas.setId(documentSnapShot.getId());
 
@@ -63,15 +73,15 @@ public class MainActivity extends AppCompatActivity {
 
                             Log.i("ID_TAG", id);
                         }
+                        //Täyttää ListView listan olioilla
+                        ListView potilasLista = (ListView) findViewById(R.id.potilaslista);
+                        potilasLista.setAdapter(new ArrayAdapter<PotilasOlio>(MainActivity.this,
+                                R.layout.listanjasen,
+                                PotilasLista.getInstance().getPotilaat()));
                     }
                 });
 
-        //Täyttää ListView listan olioilla
         ListView potilasLista = (ListView) findViewById(R.id.potilaslista);
-        potilasLista.setAdapter(new ArrayAdapter<PotilasOlio>(MainActivity.this,
-                R.layout.listanjasen,
-                PotilasLista.getInstance().getPotilaat()));
-
         //Näkymä yksittäisen olion käyttöliittymään
         potilasLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -82,5 +92,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 }

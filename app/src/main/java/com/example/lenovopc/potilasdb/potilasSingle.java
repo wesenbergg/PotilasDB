@@ -76,7 +76,7 @@ public class potilasSingle extends AppCompatActivity {
 
         colRef.document(poistettavanId).delete();
 
-        //siirry mainactivityyn 
+        //siirry mainactivityyn
         Intent intentFrontPage = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intentFrontPage);
     }
