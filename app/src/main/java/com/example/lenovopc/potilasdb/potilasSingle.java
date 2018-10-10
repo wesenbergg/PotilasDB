@@ -15,10 +15,11 @@ import android.widget.Toast;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-
+/**
+ * Näkymä joka aukeaa kun klikkaat potilaan nimeä MainActivityssa. Tässä näkyy potilaan tarkemmat tiedot.
+ * Muokkausnapista pääse muokkausnäkymään ja roskisnapilla voi poistaa potilaan.
+ */
 public class potilasSingle extends AppCompatActivity {
-    /*Näkymä joka aukeaa kun klikkaat potilaan nimeä MainActivityssa. Tässä näkyy potilaan tarkemmat tiedot.
-    Muokkausnapista pääse muokkausnäkymään ja roskisnapilla voi poistaa potilaan.*/
 
     private CollectionReference colRef = FirebaseFirestore.getInstance().collection("potilaat");
 

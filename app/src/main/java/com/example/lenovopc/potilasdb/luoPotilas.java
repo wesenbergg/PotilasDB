@@ -20,9 +20,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+/**
+ * Syöttämällä tietokenttiin potilaan tiedot ja painamalla luo nappia luot uuden potilaan ja
+ * siirryt takaisin MainActivityyn
+ */
 public class luoPotilas extends AppCompatActivity {
-    /*Syöttämällä tietokenttiin potilaan tiedot ja painamalla luo nappia luot uuden potilaan ja
-     siirryt takaisin MainActivityyn*/
 
     //Referenssi firebase-collectioniin
     private CollectionReference colRef = FirebaseFirestore.getInstance().collection("potilaat");
@@ -77,6 +79,10 @@ public class luoPotilas extends AppCompatActivity {
         });
     }
 
+    /**
+     * Tarkistaa RadioGroupista kumpi nappi on valittu, jos kumpikaan ei ole Sukupuoli on Muu.
+     * @return
+     */
     public String maleOrFemale() {
         RadioButton male = findViewById(R.id.maleBtn);
         RadioButton female = findViewById(R.id.femaleBtn);

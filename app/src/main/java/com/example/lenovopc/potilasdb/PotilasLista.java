@@ -2,8 +2,10 @@ package com.example.lenovopc.potilasdb;
 
 import java.util.ArrayList;
 
+/**
+ * PotilasLista on Singleton luokka jossa on ArrayList<PotilasOlio>. Tämä lista näytetään MainActivityssa.
+ */
 public class PotilasLista {
-    /*PotilasLista on Singleton luokka jossa on ArrayList<PotilasOlio>. Tämä lista näytetään MainActivityssa.*/
     private ArrayList<PotilasOlio> lista = new ArrayList<>();
     private static final PotilasLista ourInstance = new PotilasLista();
 

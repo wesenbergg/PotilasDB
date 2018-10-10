@@ -11,8 +11,12 @@ import android.widget.RadioButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+/**
+ * Voit muokata potilaan tietoja, painamalla päivitä potilaan tiedot muutetaan ja palaat MainActivityyn
+ */
 public class muokkaaPotilas extends AppCompatActivity {
-    /*Voit muokata potilaan tietoja, painamalla päivitä potilaan tiedot muutetaan ja palaat MainActivityyn*/
+
+
     //Collection referenssi
     private CollectionReference colRef = FirebaseFirestore.getInstance().collection("potilaat");
 
@@ -72,6 +76,10 @@ public class muokkaaPotilas extends AppCompatActivity {
         });
     }
 
+    /**
+     * Tarkistaa RadioGroupista kumpi nappi on valittu, jos kumpikaan ei ole Sukupuoli on Muu.
+     * @return
+     */
     public String maleOrFemale() {
         RadioButton male = findViewById(R.id.muokkaaMale);
         RadioButton female = findViewById(R.id.muokkaaFemale);
