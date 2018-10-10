@@ -24,6 +24,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    /*Päänäkymä jossa lista potilaista. potiaan nimen painaminen vie potilasSingle näkymään.
+     Plus napin painaminen vie luoPotilas näkymään.*/
 
     private static final String TAG = "MainAcvtivity";
     private CollectionReference colRef = FirebaseFirestore.getInstance().collection("potilaat");

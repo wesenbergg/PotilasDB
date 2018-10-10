@@ -21,6 +21,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class luoPotilas extends AppCompatActivity {
+    /*Syöttämällä tietokenttiin potilaan tiedot ja painamalla luo nappia luot uuden potilaan ja
+     siirryt takaisin MainActivityyn*/
+
     //Referenssi firebase-collectioniin
     private CollectionReference colRef = FirebaseFirestore.getInstance().collection("potilaat");
 
@@ -46,15 +49,30 @@ public class luoPotilas extends AppCompatActivity {
                 String etuNimi = etuNim.getText().toString();
                 String sukuNimi = sukuNim.getText().toString();
                 String diagnoosi = diagnoos.getText().toString();
-                int ika = Integer.parseInt(ika1.getText().toString());
 
-                //Luo potilas-olio, lisää olio firebaseen
-                PotilasOlio potilas = new PotilasOlio(etuNimi,sukuNimi,diagnoosi, sex, ika);
-                colRef.add(potilas);
+                int ika = -1;
+                if (!ika1.getText().toString().equals("")){
+                    ika = Integer.parseInt(ika1.getText().toString());
+                }
 
-                //Siirry MainActivityyn
-                Intent intentLuo = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intentLuo);
+
+
+
+
+                if (!etuNimi.equals("") && !sukuNimi.equals("") && !diagnoosi.equals("") && ika > -1) {
+                    //Luo potilas-olio, lisää olio firebaseen
+                    PotilasOlio potilas = new PotilasOlio(etuNimi,sukuNimi,diagnoosi, sex, ika);
+                    colRef.add(potilas);
+
+                    Toast.makeText(luoPotilas.this, "Potilas luotu", Toast.LENGTH_SHORT).show();
+
+                    //Siirry MainActivityyn
+                    Intent intentLuo = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intentLuo);
+                } else {
+                    Toast.makeText(luoPotilas.this, "Jotain puuttuu", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

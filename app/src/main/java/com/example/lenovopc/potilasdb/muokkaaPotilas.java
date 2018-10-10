@@ -12,6 +12,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class muokkaaPotilas extends AppCompatActivity {
+    /*Voit muokata potilaan tietoja, painamalla päivitä potilaan tiedot muutetaan ja palaat MainActivityyn*/
     //Collection referenssi
     private CollectionReference colRef = FirebaseFirestore.getInstance().collection("potilaat");
 

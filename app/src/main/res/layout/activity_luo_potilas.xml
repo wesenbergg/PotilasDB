@@ -117,7 +117,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Ikä"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/potilasDiagnoosi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

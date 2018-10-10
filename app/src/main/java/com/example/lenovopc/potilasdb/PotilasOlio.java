@@ -3,6 +3,7 @@ package com.example.lenovopc.potilasdb;
 import com.google.firebase.firestore.Exclude;
 
 public class PotilasOlio {
+    /*Yhden potilaan tiedot, potilaat on säilötty firebaseen.*/
     private String id;
     private String etuNimi;
     private String sukuNimi;
