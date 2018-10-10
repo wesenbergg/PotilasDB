@@ -23,9 +23,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+/**
+ * Päänäkymä jossa lista potilaista. Potilaan nimen painaminen vie potilasSingle näkymään.
+ Plus napin painaminen vie luoPotilas näkymään.
+ *@author Jyry Soinio
+ * @author Karoliina Kallio
+ * @author Boriss Jerjomkin
+ */
 public class MainActivity extends AppCompatActivity {
-    /*Päänäkymä jossa lista potilaista. potiaan nimen painaminen vie potilasSingle näkymään.
-     Plus napin painaminen vie luoPotilas näkymään.*/
 
     private static final String TAG = "MainAcvtivity";
     private CollectionReference colRef = FirebaseFirestore.getInstance().collection("potilaat");
