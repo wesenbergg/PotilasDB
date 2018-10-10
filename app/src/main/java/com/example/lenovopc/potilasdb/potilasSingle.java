@@ -50,12 +50,16 @@ public class potilasSingle extends AppCompatActivity {
     private void setViewById(int i){
         String nimet = PotilasLista.getInstance().haePotilasOlio(i).toString();
         String diagnoosi = PotilasLista.getInstance().haePotilasOlio(i).getDiagnoosi();
+        String sukupuoli = PotilasLista.getInstance().haePotilasOlio(i).getSukupuoli();
+        int ika = PotilasLista.getInstance().haePotilasOlio(i).getIka();
 
         TextView nimiTV = (TextView) findViewById(R.id.nimiTV);
         TextView diagnoosiTV = (TextView) findViewById(R.id.diagnoosiTV);
+        TextView descriptionTV = (TextView) findViewById(R.id.descriptionTV);
 
         nimiTV.setText(nimet);
         diagnoosiTV.setText(diagnoosi);
+        descriptionTV.setText(sukupuoli + ", " + ika);
     }
 
     //Lisää delete-menu oikeeseen yläkulmaan

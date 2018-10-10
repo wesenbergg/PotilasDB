@@ -7,16 +7,20 @@ public class PotilasOlio {
     private String etuNimi;
     private String sukuNimi;
     private String Diagnoosi;
+    private String sukupuoli;
+    private int ika;
 
     public PotilasOlio(){
         //Tyhjä konstruktori firebase tsydeemille
     }
 
     //Konstruktori
-    public PotilasOlio(String etuNimi,String sukuNimi, String diagnoosi) {
+    public PotilasOlio(String etuNimi,String sukuNimi, String diagnoosi, String Sukupuoli, int ika) {
         this.etuNimi = etuNimi;
         this.sukuNimi = sukuNimi;
         this.Diagnoosi = diagnoosi;
+        this.sukupuoli = Sukupuoli;
+        this.ika = ika;
     }
 
     //Setterit alkavat
@@ -53,6 +57,14 @@ public class PotilasOlio {
 
     public String getDiagnoosi() {
         return Diagnoosi;
+    }
+
+    public int getIka() {
+        return ika;
+    }
+
+    public String getSukupuoli() {
+        return sukupuoli;
     }
 
     @Override

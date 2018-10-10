@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,17 +35,21 @@ public class luoPotilas extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                String sex = maleOrFemale();
+
                 //Etsi edit textit, lisää edit text data muuttujiin
                 EditText etuNim = (EditText) findViewById(R.id.potilasEtunimi);
                 EditText sukuNim = (EditText) findViewById(R.id.potilasSukunimi);
                 EditText diagnoos = (EditText) findViewById(R.id.potilasDiagnoosi);
+                EditText ika1 = (EditText) findViewById(R.id.potilasIka);
 
                 String etuNimi = etuNim.getText().toString();
                 String sukuNimi = sukuNim.getText().toString();
                 String diagnoosi = diagnoos.getText().toString();
+                int ika = Integer.parseInt(ika1.getText().toString());
 
                 //Luo potilas-olio, lisää olio firebaseen
-                PotilasOlio potilas = new PotilasOlio(etuNimi,sukuNimi,diagnoosi);
+                PotilasOlio potilas = new PotilasOlio(etuNimi,sukuNimi,diagnoosi, sex, ika);
                 colRef.add(potilas);
 
                 //Siirry MainActivityyn
@@ -51,5 +57,18 @@ public class luoPotilas extends AppCompatActivity {
                 startActivity(intentLuo);
             }
         });
+    }
+
+    public String maleOrFemale() {
+        RadioButton male = findViewById(R.id.maleBtn);
+        RadioButton female = findViewById(R.id.femaleBtn);
+        String palautus = "Muu";
+        if(male.isChecked()) {
+            return "Mies";
+        } else if(female.isChecked()) {
+            return "Nainen";
+        }
+        return palautus;
+
     }
 }
